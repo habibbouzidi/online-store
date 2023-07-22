@@ -1,10 +1,18 @@
-import { NextPage } from "next"
+"use client";
 
-const GameItem: NextPage = (props) => {
-    console.log(props)
-    return (
-        <div>GameItem</div>
-    )
-}
+import GameDetailsClient from "@/components/GameDetails/GameDetailsClient";
+import GameDetailsServer from "@/components/GameDetails/GameDetailsServer";
 
-export default GameItem
+const GameItem = async (props: { params: { slug: string } }) => {
+  const {
+    params: { slug },
+  } = props;
+
+  return (
+    <GameDetailsClient slug={slug}>
+      <GameDetailsServer slug={slug}/>
+    </GameDetailsClient>
+  );
+};
+
+export default GameItem;
